@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="385dp"
+        android:layout_height="375dp"
+        android:layout_margin="25dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="showCustomAlertDialogBox"
+        android:outlineSpotShadowColor="#000000"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircleRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.68">
+
+
+        <ImageView
+            android:id="@+id/ImageViewRizal"
+            android:layout_width="326dp"
+            android:layout_height="188dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="90dp"
+            app:srcCompat="@drawable/rizal" />
+
+        <Button
+            android:id="@+id/btnVerify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="320dp"
+            android:background="@drawable/verify" />
+
+        <TextView
+            android:id="@+id/tvDateAdded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="278dp"
+            android:text="Date Added"
+            android:textStyle="bold"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/btnRemove"
+            android:layout_width="31dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="340dp"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/bin" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="416dp"
+            android:scaleType="fitXY"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/blue" />
+
+        <TextView
+            android:id="@+id/TextViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="TITLE"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/TextViewDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="43dp"
+            android:alpha="0.7"
+            android:text="Details"
+            android:textColor="#ffffff"
+            android:textSize="14sp"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

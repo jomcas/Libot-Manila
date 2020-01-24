@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="170dp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:outlineSpotShadowColor="#000000"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="false"
+        app:layout_constraintCircleRadius="15dp"
+        android:layout_gravity="center"
+        app:cardPreventCornerOverlap="false"
+        android:clickable="true"
+        android:onClick="onClickStartActvitiy"
+        android:layout_width="385dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginBottom="248dp"
+        android:foregroundGravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/ImageViewRizalDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/paco_park" />
+
+        <ImageView
+            android:id="@+id/dark"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="107dp"
+            android:alpha="0.9"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/darktrans" />
+
+        <TextView
+            android:id="@+id/TextViewTitleDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PACO PARK"
+            android:paddingTop="115dp"
+            android:paddingLeft="12dp"
+
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/TextViewDetailsDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="10dp"
+            android:alpha="0.7"
+            android:paddingTop="130dp"
+            android:paddingLeft="12dp"
+            android:text="Paco, Manila" />
+
+        <ImageView
+            android:id="@+id/ivVisited"
+            android:layout_width="138dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="5dp"
+            android:elevation="50dp"
+            android:layout_marginLeft="263dp"
+            app:srcCompat="@drawable/visited" />
+
+        <ImageView
+            android:id="@+id/ivListed"
+            android:layout_width="138dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="5dp"
+            android:elevation="50dp"
+            android:layout_marginLeft="263dp"
+            app:srcCompat="@drawable/listed" />
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>
