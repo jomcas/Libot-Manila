@@ -18,11 +18,13 @@ public class LandmarkFragment extends Fragment {
     private  RecyclerView.Adapter myAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Landmarks> landmarks;
+    private int userID;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_landmark, container, false);
         mydb = new DatabaseHelperForUsers(view.getContext());
+         userID = getArguments().getInt("User");
         Cursor res = mydb.getAllDataForLandmarks();
         if (res.getCount() == 0) {
             Toast.makeText(getActivity(), "Empty", Toast.LENGTH_SHORT).show();
@@ -33,6 +35,7 @@ public class LandmarkFragment extends Fragment {
         return view;
 
     }
+
     public View loadDatabase(View view) {
         recyclerView = view.findViewById(R.id.ListmeDisplayOnly);
         mydb = new DatabaseHelperForUsers(getActivity());
@@ -49,7 +52,7 @@ public class LandmarkFragment extends Fragment {
             }
         }
 
-        myAdapter = new LandmarksAdapterDisplayOnly(getActivity(), landmarks);
+        myAdapter = new LandmarksAdapterDisplayOnly(getActivity(), landmarks,userID);
         recyclerView.setAdapter(myAdapter);
         return view;
     }

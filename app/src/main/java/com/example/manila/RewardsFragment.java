@@ -46,6 +46,7 @@ public class RewardsFragment extends Fragment {
         }
         return view;
     }
+    
     public View loadDatabase(View view) {
         recyclerView = view.findViewById(R.id.ListRewards);
         mydb = new DatabaseHelperForUsers(getActivity());

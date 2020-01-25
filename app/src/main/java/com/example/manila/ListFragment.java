@@ -89,7 +89,7 @@ public class ListFragment extends Fragment implements onBackPressed{
 
             getActivity().finish();
         }else{
-            backToast=Toast.makeText(getActivity(), "Press back again to exit", Toast.LENGTH_SHORT);
+            backToast=Toast.makeText(getActivity(), "Press Back Again to Exit", Toast.LENGTH_SHORT);
             backToast.show();
         }
         count=System.currentTimeMillis();

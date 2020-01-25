@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import com.google.zxing.Result;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -27,6 +28,7 @@ public class ScanCodeActivity  extends AppCompatActivity implements ZXingScanner
     private final int REQUEST_PERMISSION_CAMERA =1;
     private int userID;
     private int LandmarkID;
+    private String userString;
     private String date;
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
@@ -38,6 +40,7 @@ public class ScanCodeActivity  extends AppCompatActivity implements ZXingScanner
         showPhoneStatePermission();
         userID=getIntent().getIntExtra("User",0);
         LandmarkID=getIntent().getIntExtra("Landmark",0);
+        userString=getIntent().getStringExtra("UserString");
     }
 
     @Override
@@ -67,7 +70,7 @@ public class ScanCodeActivity  extends AppCompatActivity implements ZXingScanner
                 requestPermission(Manifest.permission.CAMERA, REQUEST_PERMISSION_CAMERA);
             }
         } else {
-            Toast.makeText(this, "Permission (already) Granted!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Permission (already) Granted!", Toast.LENGTH_SHORT).show();
         }
     }
     private void showExplanation(String title,
@@ -91,28 +94,45 @@ public class ScanCodeActivity  extends AppCompatActivity implements ZXingScanner
 
     @Override
     public void handleResult(Result result) {
-        mydb = new DatabaseHelperForUsers(this);
-        String strResult = result.getText();
-        dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        date = dateFormat.format(calendar.getTime());
-        if(Integer.valueOf(strResult)>=1){
-            mydb.insertDataInVisited(userID,LandmarkID,date);
-            int i = mydb.DeleteDataUserList(userID, LandmarkID);
-            if(i==1){
-                System.out.println("Successfully Deleted");
-            }
-        }
-        int points = Integer.parseInt(strResult);
-        int Exp= mydb.getExp(userID) +points;
-        int Level=mydb.getLevel(userID);
-        if(Exp>=100){
-            mydb.updateLevel(userID,Level+1);
-            mydb.updateExp(userID,Exp-100);
-            Toast.makeText(this, "Wow! You level up! LEVEL: " + mydb.getLevel(userID), Toast.LENGTH_SHORT).show();
-        }else{
-            mydb.updateExp(userID,Exp);
-        }
+        try {
+            TextView level, exp;
+            level = findViewById(R.id.TextViewLevel);
+            exp = findViewById(R.id.TextViewExp);
+            mydb = new DatabaseHelperForUsers(this);
+            String strResult = result.getText();
+            calendar = Calendar.getInstance();
+            dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+            date = dateFormat.format(calendar.getTime());
 
+            if (Integer.valueOf(strResult) >= 1) {
+                mydb.insertDataInVisited(userID, LandmarkID, date);
+                int i = mydb.DeleteDataUserList(userID, LandmarkID);
+                if (i == 1) {
+                    System.out.println("Successfully Deleted");
+                }
+            }
+
+            int points = Integer.parseInt(strResult);
+            int Exp = mydb.getExp(userID) + points;
+            int Level = mydb.getLevel(userID);
+            if (Exp >= 100) {
+                mydb.updateLevel(userID, Level + 1);
+                mydb.updateExp(userID, Exp - 100);
+                Toast.makeText(this, "Wow! You level up! LEVEL: " + mydb.getLevel(userID), Toast.LENGTH_SHORT).show();
+                System.out.println("naglevelup");
+            } else {
+                mydb.updateExp(userID, Exp);
+                Toast.makeText(this, "You gained " + points + " points!", Toast.LENGTH_SHORT).show();
+                System.out.println("di naglevel up!");
+            }
+
+            level.setText("Level" + mydb.getLevel(1));
+            exp.setText("Level" + mydb.getExp(1));
+            System.out.println("di nagleveup");
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         onBackPressed();
     }
     @Override
@@ -130,6 +150,8 @@ public class ScanCodeActivity  extends AppCompatActivity implements ZXingScanner
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this,MainActivity.class));
+        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+        intent.putExtra("User", userString);
+        startActivity(intent);
     }
 }

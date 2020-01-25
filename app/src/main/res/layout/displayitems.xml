@@ -73,14 +73,23 @@
             android:layout_marginLeft="263dp"
             app:srcCompat="@drawable/visited" />
 
-        <ImageView
-            android:id="@+id/ivListed"
-            android:layout_width="138dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="5dp"
-            android:elevation="50dp"
-            android:layout_marginLeft="263dp"
-            app:srcCompat="@drawable/listed" />
+        <!--<ImageView-->
+            <!--android:id="@+id/ivListed"-->
+            <!--android:layout_width="138dp"-->
+            <!--android:layout_height="38dp"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:elevation="50dp"-->
+            <!--android:layout_marginLeft="263dp"-->
+            <!--app:srcCompat="@drawable/listed" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/ivNone"-->
+            <!--android:layout_width="138dp"-->
+            <!--android:layout_height="38dp"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:elevation="50dp"-->
+            <!--android:layout_marginLeft="263dp"-->
+            <!--app:srcCompat="@drawable/about" />-->
 
 
     </androidx.cardview.widget.CardView>

@@ -191,6 +191,17 @@ public class DatabaseHelperForUsers extends SQLiteOpenHelper {
         }
         return false;
     }
+    public Boolean CheckIfUser_VisetedExist(int userId, int landmarksId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Database_Table_Visited, null);
+        while (cursor.moveToNext()) {
+            if (cursor.getString(0).equals(String.valueOf(userId)) && cursor.getString(1).equals(String.valueOf(landmarksId))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public int getIDFromTableLandmarks(String Title) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -213,6 +224,7 @@ public class DatabaseHelperForUsers extends SQLiteOpenHelper {
         }
         return 0;
     }
+
 
     public String getRewardsCode(String title){
         SQLiteDatabase db = this.getWritableDatabase();

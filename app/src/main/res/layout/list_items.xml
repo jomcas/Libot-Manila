@@ -9,6 +9,7 @@
     android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="385dp"
         android:layout_height="375dp"
         android:layout_margin="25dp"
@@ -38,10 +39,11 @@
         <Button
             android:id="@+id/btnVerify"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="43dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="320dp"
-            android:background="@drawable/verify" />
+            android:background="@drawable/verify"
+            android:onClick="verifyBtnClick" />
 
         <TextView
             android:id="@+id/tvDateAdded"
@@ -50,8 +52,8 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="278dp"
             android:text="Date Added"
-            android:textStyle="bold"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnRemove"
@@ -59,13 +61,14 @@
             android:layout_height="32dp"
             android:layout_marginLeft="340dp"
             android:layout_marginTop="19dp"
-            android:background="@drawable/bin" />
+            android:background="@drawable/bin"
+            android:onClick="btnRemove" />
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="416dp"
-            android:scaleType="fitXY"
             android:layout_height="wrap_content"
+            android:scaleType="fitXY"
             app:srcCompat="@drawable/blue" />
 
         <TextView
@@ -88,10 +91,25 @@
             android:alpha="0.7"
             android:text="Details"
             android:textColor="#ffffff"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/scanTutorialClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="How To Scan QR Code?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:onClick="scanTutorialClick"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

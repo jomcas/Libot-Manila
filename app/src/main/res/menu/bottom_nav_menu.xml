@@ -7,13 +7,13 @@
             android:icon="@drawable/profile"
             android:enabled="true"
             app:showAsAction="ifRoom"
-            android:title="@string/mnlist" />
+            android:title="MNL List" />
         <item
             android:id="@+id/navigation_landmarks"
             android:icon="@drawable/landmark"
             android:enabled="true"
             app:showAsAction="ifRoom"
-            android:title="@string/landmarks2" />
+            android:title="Landmarks" />
         <item
             android:id="@+id/navigation_rewards"
             android:icon="@drawable/gallery"
@@ -25,12 +25,12 @@
             android:icon="@drawable/rewards"
             android:enabled="true"
             app:showAsAction="ifRoom"
-            android:title="@string/about" />
+            android:title="About" />
         <item
             android:id="@+id/navigation_profile"
             android:icon="@drawable/about"
             android:enabled="true"
             app:showAsAction="ifRoom"
-            android:title="@string/profile" />
+            android:title="You" />
 
 </menu>

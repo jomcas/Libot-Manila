@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class LandmarksAdapter extends RecyclerView.Adapter<LandmarksAdapter.ViewHolder> {
     private ArrayList<Landmarks> landmarks;
+    private DatabaseHelperForUsers mydb;
 
     public LandmarksAdapter(Context context,ArrayList<Landmarks> list){
         landmarks=list;
@@ -23,13 +24,14 @@ public class LandmarksAdapter extends RecyclerView.Adapter<LandmarksAdapter.View
         ImageView Icons;
         TextView Title;
         TextView Details;
+        ImageView Status;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             Title=itemView.findViewById(R.id.TextViewTitle);
             Details=itemView.findViewById(R.id.TextViewDetails);
             Icons=itemView.findViewById(R.id.ImageViewRizal);
-
+            Status = itemView.findViewById(R.id.ivVisited);
         }
     }
 
@@ -43,10 +45,21 @@ public class LandmarksAdapter extends RecyclerView.Adapter<LandmarksAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull LandmarksAdapter.ViewHolder holder, int position) {
-        holder.itemView.setTag(landmarks.get(position));
 
+        holder.itemView.setTag(landmarks.get(position));
         holder.Title.setText(landmarks.get(position).getLandmarks());
         holder.Details.setText(landmarks.get(position).getID());
+//        holder.Status.setTag(landmarks.get(position));
+
+//        int landmarkID = mydb.getIDFromTableLandmarks(landmarks.get(position).getLandmarks());
+//
+//        if(landmarkID != 0) {
+//            // not on list muna
+//            holder.Status.setImageResource(R.drawable.visited);
+//        } else {
+//            // lister
+//            holder.Status.setImageResource(R.drawable.listed);
+//        }
 
         if(landmarks.get(position).getPreferences().equals("National Planetarium")){
             holder.Icons.setImageResource(R.drawable.planetarium);

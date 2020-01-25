@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private String user;
     private ArrayList<String> landmarks2 = new ArrayList<>();
     private CharSequence[] sequences;
+    private TextView dateAdded;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.navigation_landmarks:
                     selectedFragment = new LandmarkFragment();
+                    selectedFragment.setArguments(bundle);
                     break;
                 case R.id.navigation_rewards:
                     selectedFragment = new RewardsFragment();
@@ -85,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         mydb = new DatabaseHelperForUsers(this);
         calendar = Calendar.getInstance();
         user = getIntent().getStringExtra("User");
+
         int PassUser = mydb.getIDFromTableUser(user);
 
         Bundle bundle = new Bundle();
@@ -254,6 +257,7 @@ public class MainActivity extends AppCompatActivity {
                 int PassUser = mydb.getIDFromTableUser(user);
                 Intent intent = new Intent(getBaseContext(), ScanCodeActivity.class);
                 intent.putExtra("User", PassUser);
+                intent.putExtra("UserString",user);
                 intent.putExtra("Landmark",landmarksID);
                 startActivity(intent);
             }
@@ -306,6 +310,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void loadDatabase(int userID) {
         View parent = (View) ListFragment.passdata.getParent();
+        dateAdded = findViewById(R.id.tvDateAdded);
         recyclerView = parent.findViewById(R.id.List);
         mydb = new DatabaseHelperForUsers(this);
         recyclerView.setHasFixedSize(true);
@@ -318,6 +323,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             while (res.moveToNext()) {
                 String temp = mydb.getLandmarksBaseOnID(res.getInt(1));
+//                dateAdded.setText(res.getInt(2));
                 landmarks.add(new Landmarks(temp, "Add Details", temp));
             }
         }
@@ -342,5 +348,43 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return "None";
+    }
+
+    public void verifyBtnClick(View view) {
+        TextView text = (TextView) findViewById(R.id.TextViewTitle);
+        final int landmarksID = mydb.getIDFromTableLandmarks(text.getText().toString());
+        int PassUser = mydb.getIDFromTableUser(user);
+        Intent intent = new Intent(getBaseContext(), ScanCodeActivity.class);
+        intent.putExtra("User", PassUser);
+        intent.putExtra("Landmark",landmarksID);
+        startActivity(intent);
+    }
+
+    public void btnRemove(View view) {
+        TextView text = (TextView) findViewById(R.id.TextViewTitle);
+        final View view1 = getLayoutInflater().inflate(R.layout.alertdialogboxcustomize, null);
+        final int userID = mydb.getIDFromTableUser(user);
+        final int landmarksID = mydb.getIDFromTableLandmarks(text.getText().toString());
+        AlertDialog.Builder builder = new AlertDialog.Builder(view1.getContext());
+        builder.setTitle("Landmarks");
+        builder.setMessage("Delete?");
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                int i = mydb.DeleteDataUserList(userID, landmarksID);
+                if(i==1){
+                    System.out.println("Successfully Deleted");
+                }
+                loadDatabase(userID);
+            }
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this, "No deletion", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.create();
+        builder.show();
     }
 }
